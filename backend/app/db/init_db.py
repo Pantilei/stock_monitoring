@@ -7,6 +7,7 @@ def init_db(db: Session):
     user_in = schemas.UserCreate(
         email=settings.FIRST_SUPERUSER,
         password=settings.FIRST_SUPERUSER_PASSWORD,
+        active=True,
         is_superuser=True
     )
 

@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import Optional
 
 
 class Token(BaseModel):
@@ -6,5 +7,7 @@ class Token(BaseModel):
     token_type: str
 
 
-class TokemPayload(BaseModel):
-    sub: str
+class TokenPayload(BaseModel):
+    sub: Optional[str] = None
+    scopes: Optional[str] = None
+    exp: Optional[int] = None

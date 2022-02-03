@@ -1,4 +1,3 @@
-import json
 from fastapi.encoders import jsonable_encoder
 from typing import Generic, TypeVar, Type, List, Union, Dict, Any
 from pydantic import BaseModel
