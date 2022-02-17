@@ -1,3 +1,5 @@
-export * from './UserCreate';
-export * from './UserEdit';
-export * from './UserList';
+import UserCreate from './UserCreate';
+import UserEdit from './UserEdit';
+import UserList from './UserList';
+
+export { UserCreate, UserEdit, UserList };

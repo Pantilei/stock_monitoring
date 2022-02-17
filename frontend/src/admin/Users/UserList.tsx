@@ -9,7 +9,7 @@ import {
   EditButton,
 } from 'react-admin';
 
-const UserList = (props: ListProps): React.ReactElement => {
+function UserList(props: ListProps): React.ReactElement {
   return (
     <List {...props}>
       <Datagrid rowClick='edit'>
@@ -19,6 +19,6 @@ const UserList = (props: ListProps): React.ReactElement => {
       </Datagrid>
     </List>
   );
-};
+}
 
 export default UserList;

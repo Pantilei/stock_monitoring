@@ -1,4 +1,4 @@
-let rules = {
+const rules = {
   'max-len': ['error', 80, 2, { ignoreUrls: true }],
   '@typescript-eslint/quotes': [
     'error',
@@ -21,6 +21,7 @@ let rules = {
   'jsx-a11y/no-static-element-interactions': 'off',
   'react/jsx-one-expression-per-line': 'off',
   'react/jsx-filename-extension': [2, { extensions: ['.ts', '.tsx'] }],
+  'react/jsx-props-no-spreading': 'off',
   'lines-between-class-members': [
     'error',
     'always',
@@ -29,12 +30,17 @@ let rules = {
 };
 
 module.exports = {
-  extends: ['airbnb', 'plugin:prettier/recommended', 'prettier/react'],
-  parser: 'babel-eslint',
+  extends: [
+    'airbnb',
+    'airbnb/hooks',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
+  ],
+  // parser: 'babel-eslint',
   rules,
   env: {
     browser: true,
-    commonjs: true,
+    // commonjs: true,
     node: true,
     jest: true,
     es6: true,

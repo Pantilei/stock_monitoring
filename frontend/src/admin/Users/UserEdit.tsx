@@ -8,7 +8,7 @@ import {
   PasswordInput,
 } from 'react-admin';
 
-const UserEdit = (props: EditProps): React.ReactElement => {
+function UserEdit(props: EditProps): React.ReactElement {
   return (
     <Edit {...props}>
       <SimpleForm>
@@ -20,6 +20,6 @@ const UserEdit = (props: EditProps): React.ReactElement => {
       </SimpleForm>
     </Edit>
   );
-};
+}
 
 export default UserEdit;
