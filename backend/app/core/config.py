@@ -1,4 +1,5 @@
-from pydantic import BaseSettings, EmailStr
+from typing import List
+from pydantic import BaseSettings, EmailStr, AnyHttpUrl
 
 
 class Settings(BaseSettings):
@@ -18,6 +19,8 @@ class Settings(BaseSettings):
 
     FIRST_SUPERUSER: EmailStr
     FIRST_SUPERUSER_PASSWORD: str
+
+    BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = ["http://localhost:3000"]
 
     class Config:
         case_sensitive = True

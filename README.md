@@ -38,19 +38,23 @@
 ## Set up Eslint with Airbnb Style Guide
 
 - Install Eslint
-  > `npm install eslint —-save-dev`
+  > `yarn add eslint --save-dev`
 - Installing the style guide
-  > `npm install eslint-config-airbnb —-save-dev`
+  > `yarn add eslint-config-airbnb —-save-dev`
 - List all the peer dependencies
-  > `npm info “eslint-config-airbnb@latest" peerDependencies`
+  > `yarn info “eslint-config-airbnb@latest" peerDependencies`
 - Either install the peer dependencies one after the other or use this shortcut if you have npm version 5+
   > `npx install-peerdeps --dev eslint-config-airbnb`
 - Configure Eslint
   > Create configuration file `.eslintrc.js` and make sure to have `"extends": "airbnb"` in it
 - Install Prettier
-  > `npm install --save-dev --save-exact prettier`
+  > `yarn add --save-dev --save-exact prettier`
 - Create `.prettierrc.js` file
 
 ## Create React Typescript project
 
 > `npx create-react-app my-app --template typescript`
+
+## Start Frontend server
+
+> `yarn start`

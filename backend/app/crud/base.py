@@ -2,6 +2,7 @@ from fastapi.encoders import jsonable_encoder
 from typing import Generic, TypeVar, Type, List, Union, Dict, Any
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
+from sqlalchemy import desc, asc
 from app.db.base_class import Base
 
 
@@ -25,8 +26,17 @@ class CRUDBase(Generic[ModelType, CreateSchemeType, UpdateSchemaType]):
     def get(self, db: Session, id: int) -> ModelType:
         return db.query(self.model).filter(self.model.id == id).first()
 
+    def get_count(self, db: Session) -> int:
+        return db.query(self.model).count()
+
     def get_multi(self, db: Session, offset: int = 0, limit: int = 100) -> List[ModelType]:
         return db.query(self.model).offset(offset).limit(limit).all()
+
+    def get_multi_ordered(self, db: Session, offset: int = 0, limit: int = 100, order_by=None) -> List[ModelType]:
+        if order_by is None:
+            order_by = ["created_at", "desc"]
+        order = asc if order_by == "asc" else desc
+        return db.query(self.model).order_by(order(getattr(self.model, order_by[0]))).offset(offset).limit(limit).all()
 
     def create(self, db: Session, obj_in: CreateSchemeType) -> ModelType:
         jsonable_data = jsonable_encoder(obj_in)

@@ -31,6 +31,7 @@ def login(db: Session = Depends(get_db), form_data: OAuth2PasswordRequestForm = 
             status_code=status.HTTP_400_BAD_REQUEST, detail="User inactive")
     access_token_expire_time = timedelta(
         minutes=settings.ACCESS_TOKEN_EXPIRE_TIME)
+    print("access_token_expire_time", access_token_expire_time)
     return {
         "access_token": security.create_access_token(data={
             "sub": str(user.id),

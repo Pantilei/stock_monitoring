@@ -26,7 +26,7 @@ const authProvider = {
         const decodedToken: any = decodeJwt(accessToken);
 
         localStorage.setItem('token', accessToken);
-        localStorage.setItem('permissions', decodedToken.permissions);
+        localStorage.setItem('scopes', decodedToken.scopes);
       });
   },
   logout: () => {

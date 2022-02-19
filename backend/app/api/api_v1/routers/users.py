@@ -1,23 +1,31 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, Response, status
 from app.api import deps
 from sqlalchemy.orm import Session
 from app import schemas, models, crud
 from typing import List, Any
+import json
 
 router = APIRouter()
 
 
 @router.get('/', response_model=List[schemas.User])
 async def get_users(
+    response: Response,
     db: Session = Depends(deps.get_db),
-    limit: int = 100,
-    offset: int = 0,
-    current_user: models.User = Depends(deps.get_current_active_user)
+    sort: str = json.dumps(["created_at", "desc"]),
+    range: str = json.dumps([0, 100]),
+    filter: str = json.dumps({}),
+    current_user: models.User = Depends(deps.get_current_active_user),
 ) -> List[schemas.User]:
     """
     Retreive list of users
     """
-    return crud.user.get_multi(db, offset=offset, limit=limit)
+    sort_parsed = json.loads(sort)
+    range_parsed = json.loads(range)
+    filter_parsed = json.loads(filter)
+    response.headers["content-range"] = f"users {range_parsed[0]}-{range_parsed[1]}/" + str(
+        crud.user.get_count(db))
+    return crud.user.get_multi_ordered(db, offset=range_parsed[0], limit=range_parsed[1], order_by=sort_parsed)
 
 
 @router.get('/{user_id}', response_model=schemas.User)
