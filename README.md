@@ -40,7 +40,7 @@
 - Install Eslint
   > `yarn add eslint --save-dev`
 - Installing the style guide
-  > `yarn add eslint-config-airbnb —-save-dev`
+  > `yarn add eslint-config-airbnb --save-dev`
 - List all the peer dependencies
   > `yarn info “eslint-config-airbnb@latest" peerDependencies`
 - Either install the peer dependencies one after the other or use this shortcut if you have npm version 5+
