@@ -10,6 +10,9 @@ from sqlalchemy.types import DateTime
 
 
 class utcnow(expression.FunctionElement):
+    """
+    Timestamps are best stored in relational databases as UTC, without time zones
+    """
     type = DateTime()
     inherit_cache = True
 
